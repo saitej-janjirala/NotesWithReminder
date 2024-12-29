@@ -4,11 +4,17 @@ import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.os.Build
+import androidx.hilt.work.HiltWorkerFactory
+import androidx.work.Configuration
+import com.saitejajanjirala.noteswithreminder.data.worker.MyWorkerFactory
 import com.saitejajanjirala.noteswithreminder.util.Util
 import dagger.hilt.android.HiltAndroidApp
+import javax.inject.Inject
 
 @HiltAndroidApp
-class MyApplication : Application() {
+class MyApplication : Application(), Configuration.Provider{
+
+    @Inject lateinit var workerFactory : MyWorkerFactory
 
     override fun onCreate() {
         super.onCreate()
@@ -28,4 +34,11 @@ class MyApplication : Application() {
         }
 
     }
+
+    override val workManagerConfiguration: Configuration
+        get() =  Configuration.Builder()
+            .setMinimumLoggingLevel(android.util.Log.DEBUG)
+            .setWorkerFactory(workerFactory)
+            .build()
+
 }

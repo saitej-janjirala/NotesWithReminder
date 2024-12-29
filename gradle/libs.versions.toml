@@ -36,6 +36,8 @@ mockk = "1.13.4"
 kotlinPlugin = "1.8.10"
 workRuntimeKtx = "2.9.1"
 composeMaterial = "1.4.0"
+hiltCommon = "1.2.0"
+hiltWork = "1.0.0"
 
 
 [libraries]
@@ -82,6 +84,8 @@ material = { group = "com.google.android.material", name = "material", version.r
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 androidx-compose-material = { group = "androidx.wear.compose", name = "compose-material", version.ref = "composeMaterial" }
+androidx-hilt-common = { group = "androidx.hilt", name = "hilt-common", version.ref = "hiltCommon" }
+androidx-hilt-work = { group = "androidx.hilt", name = "hilt-work", version.ref = "hiltWork" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

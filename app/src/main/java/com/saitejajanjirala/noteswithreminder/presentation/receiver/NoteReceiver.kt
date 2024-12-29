@@ -8,9 +8,13 @@ import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.work.OneTimeWorkRequest
+import androidx.work.WorkManager
+import androidx.work.workDataOf
 import com.saitejajanjirala.noteswithreminder.MyApplication
 import com.saitejajanjirala.noteswithreminder.R
 import com.saitejajanjirala.noteswithreminder.data.local.NotesDao
+import com.saitejajanjirala.noteswithreminder.data.worker.DeleteNoteWorker
 import com.saitejajanjirala.noteswithreminder.util.Util
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -45,10 +49,12 @@ class NoteReceiver: BroadcastReceiver() {
                 return
             }
             notificationManager.notify(noteId, notification)
-            goAsync()
-            CoroutineScope(Dispatchers.IO).launch {
-                notesDao.deleteNoteWithNoteId(noteId)
-            }
+            val workManager = WorkManager.getInstance(context)
+            val workRequest = OneTimeWorkRequest.Builder(DeleteNoteWorker::class.java)
+                .setInputData(workDataOf("note_id" to noteId))
+                .build()
+
+            workManager.enqueue(workRequest)
         }
     }
 }
