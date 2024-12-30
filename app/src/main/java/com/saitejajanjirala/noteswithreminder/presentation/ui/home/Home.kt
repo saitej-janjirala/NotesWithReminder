@@ -7,6 +7,7 @@ import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -53,6 +54,7 @@ import androidx.wear.compose.material.rememberSwipeableState
 import androidx.wear.compose.material.swipeable
 import com.saitejajanjirala.noteswithreminder.domain.models.Note
 import com.saitejajanjirala.noteswithreminder.domain.models.Result
+import com.saitejajanjirala.noteswithreminder.presentation.ui.detail.Converter
 import com.saitejajanjirala.noteswithreminder.presentation.ui.util.Screen
 import com.saitejajanjirala.noteswithreminder.util.Util
 import com.saitejajanjirala.noteswithreminder.util.Util.toPx
@@ -204,6 +206,17 @@ fun CardItem(modifier: Modifier,navController: NavHostController,note:Note){
                     maxLines = 10,
                     overflow = TextOverflow.Ellipsis
                 )
+                Spacer(Modifier.height(8.dp))
+                Row {
+                    Spacer(Modifier.weight(1f))
+                    Text(
+                        text = Converter.getDateAndTimeInMillis(note.dateTime),
+                        fontSize = 18.sp,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        maxLines = 10,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
             }
         }
     }

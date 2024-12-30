@@ -12,7 +12,7 @@ object Converter {
         val calendar = Calendar.getInstance().apply {
             timeInMillis = millis
         }
-        val dateFormat = java.text.SimpleDateFormat("MM-dd-yyyy", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("MM-dd-yyyy", Locale.getDefault())
         return dateFormat.format(calendar.time)
     }
     fun combineDateAndTime(dateInMillis: Long, hour: Int, minute: Int): Long {
@@ -64,6 +64,15 @@ object Converter {
             set(Calendar.MILLISECOND, 0)
         }
         return calendar.timeInMillis
+    }
+
+    fun getDateAndTimeInMillis(time : Long) : String{
+
+        val calendar = Calendar.getInstance().apply {
+            timeInMillis = time
+        }
+        val dateFormat = SimpleDateFormat("MM-dd-yyyy HH:mm", Locale.getDefault())
+        return dateFormat.format(calendar.timeInMillis)
     }
 
 }
