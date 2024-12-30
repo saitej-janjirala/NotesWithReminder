@@ -54,6 +54,7 @@ fun DetailScreen(
     val time by remember { viewModel.noteTime}
     val focusManager = LocalFocusManager.current
     val context = LocalContext.current
+    val isEnabled by remember { viewModel.isEnabled }
 
     LaunchedEffect(key1 = true){
         viewModel.fetchNoteData()
@@ -137,6 +138,7 @@ fun DetailScreen(
 
             // Fixed Save Button
             Button(
+                enabled = isEnabled,
                 onClick = {
                     viewModel.onEvent(AddEditNotesEvent.OnSaveNote)
                 },

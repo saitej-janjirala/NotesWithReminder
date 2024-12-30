@@ -62,6 +62,12 @@ class DetailViewModel @Inject constructor(
            isEnabled = true
        )
     )
+
+    private var _isEnabled = mutableStateOf(
+        true
+    )
+    val isEnabled : State<Boolean>
+        get() = _isEnabled
     val noteTime : State<TimePickerState>
         get() =_noteTime
 
@@ -79,6 +85,7 @@ class DetailViewModel @Inject constructor(
                     val isEnabled = savedStateHandle.get<Boolean>(Util.IS_ENABLED)?:true
                     prevNote = it
                     currentNoteId = it.id
+                    _isEnabled.value = isEnabled
                     _noteTitle.value = noteTitle.value.copy(
                         text = it.title,
                         isHintVisible = false,
