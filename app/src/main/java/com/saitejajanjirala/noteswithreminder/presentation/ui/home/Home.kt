@@ -187,7 +187,7 @@ fun CardItem(modifier: Modifier,navController: NavHostController,note:Note){
                 }) {
             Column(
                 Modifier
-                    .background(MaterialTheme.colorScheme.primary)
+                    .background(Color.LightGray)
                     .fillMaxSize()
                     .padding(8.dp)
             ) {
