@@ -124,6 +124,8 @@ dependencies {
     implementation(libs.androidx.animation)
 
     implementation(libs.androidx.work.runtime.ktx)
+    testImplementation(libs.mockk)
+    androidTestImplementation(libs.mockk)
 
     testImplementation(libs.turbine)
 }
